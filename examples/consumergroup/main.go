@@ -66,6 +66,7 @@ func main() {
 	config := sarama.NewConfig()
 	config.Version = version
 
+	// 分配策略(见策略定义处的说明)
 	switch assignor {
 	case "sticky":
 		config.Consumer.Group.Rebalance.Strategy = sarama.BalanceStrategySticky
@@ -102,6 +103,7 @@ func main() {
 			// `Consume` should be called inside an infinite loop, when a
 			// server-side rebalance happens, the consumer session will need to be
 			// recreated to get the new claims
+			// 消费者可以指定多个Topic
 			if err := client.Consume(ctx, strings.Split(topics, ","), &consumer); err != nil {
 				log.Panicf("Error from consumer: %v", err)
 			}
@@ -132,6 +134,7 @@ func main() {
 }
 
 // Consumer represents a Sarama consumer group consumer
+// 代表一个Sarama消费组的消费者
 type Consumer struct {
 	ready chan bool
 }

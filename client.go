@@ -103,11 +103,13 @@ const (
 	// assigned to the next message that will be produced to the partition. You
 	// can send this to a client's GetOffset method to get this offset, or when
 	// calling ConsumePartition to start consuming new messages.
+	// 从最新的一条开始消费
 	OffsetNewest int64 = -1
 	// OffsetOldest stands for the oldest offset available on the broker for a
 	// partition. You can send this to a client's GetOffset method to get this
 	// offset, or when calling ConsumePartition to start consuming from the
 	// oldest offset that is still available on the broker.
+	// 从最老的一条开始消费
 	OffsetOldest int64 = -2
 )
 
