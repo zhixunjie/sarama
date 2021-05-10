@@ -66,7 +66,7 @@ func main() {
 	config := sarama.NewConfig()
 	config.Version = version
 
-	// 分配策略(见策略定义处的说明)
+	// 重平衡的策略(见策略定义处的说明)
 	switch assignor {
 	case "sticky":
 		config.Consumer.Group.Rebalance.Strategy = sarama.BalanceStrategySticky
@@ -134,7 +134,7 @@ func main() {
 }
 
 // Consumer represents a Sarama consumer group consumer
-// 代表一个Sarama消费组的消费者
+// 代表Sarama消费组的一个消费者
 type Consumer struct {
 	ready chan bool
 }
